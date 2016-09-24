@@ -18,27 +18,25 @@ retornando o valor da temperatura desejada.*/
 int convercaoValorDesejado(){  
       int valorDesejado;
       long int pinoleituraPotenciometro = 5;
-      valorDesejado = map(analogRead(pinoleituraPotenciometro), 1080,0,15,36);
+      valorDesejado = map(analogRead(pinoleituraPotenciometro), 1080,0,15,30);
       return valorDesejado;
 }
 
 
 
-/* Função que reberá como parametro dois argumentos x e y para serem 
- *  impressos no LCD 16x2, 
-  x será a temperatura abiente e sera impresso na parte superior do LCD
-  y será a temperatura desejada e sera impresso na parte inferior do LCD
+/*    Função que reberá como parametro dois argumentos x e y para serem 
+      impressos no LCD 16x2, 
+      x será a temperatura abiente e sera impresso na parte superior do LCD
+      y será a temperatura desejada e sera impresso na parte inferior do LCD
  */ 
 int imprimir_valores_lcd(int x,int y){
       lcd.clear();               //Limpa a tela  do lcd
-      lcd.print("TempAmb: ");    // imprimi o conteúdo entre aspas
       lcd.setCursor(0,0);        // imprimi o conteúdo anterior na coluna 0 e na linha 0
+      lcd.print("TempAmb: ");    // imprimi o conteúdo entre aspas
       lcd.print(x);              // imprimindo o valor de x,por  parametro a temperatura ambiente 
-      lcd.setCursor(7,0);        // difino a coluna 7 na linha 0
-      lcd.print("TempDesej: ");
-      lcd.setCursor(0,2);     
+      lcd.setCursor(0,1); 
+      lcd.print("TempDesej: ");        
       lcd.print(y);              //imprimi o valor de y, por  parametro a temperatura desejada
-      lcd.setCursor(1,8);
 }
 
 
@@ -88,8 +86,9 @@ void loop(){
   //Este if limita o codigo de receber valores correspondentes as temperaturas acima de 50 
   if( convercaoTemp() > 50){
       lcd.clear();
-      lcd.print("Temp Perigosa!")
-      Serial.println("Temperatura Perigosa!");  }
+      lcd.setCursor(0,0);
+      lcd.print("Temp Perigosa!");
+      Serial.println("!!!Temperatura Perigosa!!!");  }
       
   else{ 
       /*aqui estou chamando a função para printar os conteudos para o lcd, 
