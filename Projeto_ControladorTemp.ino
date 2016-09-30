@@ -86,9 +86,13 @@ void loop(){
   //Este if limita o codigo de receber valores correspondentes as temperaturas acima de 50 
   if( convercaoTemp() > 50){
       lcd.clear();
-      lcd.setCursor(0,0);
-      lcd.print("Temp Perigosa!");
-      Serial.println("!!!Temperatura Perigosa!!!");  }
+      lcd.setCursor(2,0);
+      lcd.print("Temperatura");
+      lcd.setCursor(3,1);
+      lcd.print("Perigosa!");
+      Serial.println("!!!Temperatura Perigosa!!!");
+      analogWrite(pinoTransistor, 255);
+      delay(1000);}
       
   else{ 
       /*aqui estou chamando a função para printar os conteudos para o lcd, 
